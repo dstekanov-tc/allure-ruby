@@ -3,9 +3,17 @@
 module Allure
   # Allure model step result container
   class TestResultContainer < JSONable
-    def initialize(uuid: UUID.generate, name: "Unnamed")
+    def initialize(uuid: nil, name: "Unnamed")
       super()
 
+      if uuid.nil?
+        begin
+          uuid = UUID.generate 
+        rescue NoMethodError => e # during parallel_split_test it fails due to how random number is generated
+          uuid = SecureRandom.uuid
+        end
+      end
+      
       @uuid = uuid
       @name = name
       @children = []
