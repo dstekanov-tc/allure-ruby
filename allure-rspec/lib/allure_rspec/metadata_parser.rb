@@ -31,7 +31,7 @@ module AllureRspec
     # Metadata parser instance
     #
     # @param [RSpec::Core::Example] example
-    # @param [AllureRspec::RspecConfig] config <description>
+    # @param [AllureRspec::RspecConfig] config
     def initialize(example, config)
       @example = example
       @config = config
@@ -65,6 +65,21 @@ module AllureRspec
         muted: !metadata[:muted].nil?,
         known: !metadata[:known].nil?
       )
+    end
+
+    # Example location
+    #
+    # @return [String]
+    def location
+      file = example
+             .metadata
+             .fetch(:shared_group_inclusion_backtrace)
+             .last
+             &.formatted_inclusion_location
+
+      return example.location unless file
+
+      file
     end
 
     private
@@ -143,12 +158,12 @@ module AllureRspec
     # @param [Symbol] type
     # @return [Array<Allure::Link>]
     def matching_links(type)
-      link_pattern = config.public_send("link_#{type}_pattern")
+      link_pattern = config.public_send(:"link_#{type}_pattern")
       return [] unless link_pattern
 
       metadata
-        .select { |key| __send__("#{type}?", key) }
-        .map { |key, value| Allure::ResultUtils.public_send("#{type}_link", key.to_s, value, link_pattern) }
+        .select { |key| __send__(:"#{type}?", key) }
+        .map { |key, value| Allure::ResultUtils.public_send(:"#{type}_link", key.to_s, value, link_pattern) }
     end
 
     # Label value from custom metadata

@@ -6,7 +6,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/3190a4c9e68f20dd82ec/maintainability)](https://codeclimate.com/github/allure-framework/allure-ruby/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/3190a4c9e68f20dd82ec/test_coverage)](https://codeclimate.com/github/allure-framework/allure-ruby/test_coverage)
 [![Yard Docs](https://img.shields.io/badge/yard-docs-blue.svg)](https://rubydoc.info/github/allure-framework/allure-ruby/master)
-[![Known Vulnerabilities](https://snyk.io/test/github/allure-framework/allure-ruby/badge.svg)](https://snyk.io/test/github/allure-framework/allure-ruby)
 [![Test Report](https://img.shields.io/badge/report-allure-blue.svg)](https://storage.googleapis.com/allure-test-reports/allure-ruby/refs/heads/master/index.html)
 
 Ruby testing framework adaptors for generating allure compatible test reports.
@@ -108,7 +107,7 @@ New version can be created by triggering manual `Release` workflow
 
 Ruby binding hosted in this repository only generate source json files for the [allure2](https://github.com/allure-framework/allure2) reporter.
 
-See [documentation](https://docs.qameta.io/allure-report/#_reporting) on how to generate report.
+See [documentation](https://allurereport.org/) on how to use allure report.
 
 ### Using with CI providers
 

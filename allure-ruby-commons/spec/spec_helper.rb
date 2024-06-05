@@ -17,6 +17,8 @@ end
 RSpec.configure do |config|
   config.before do |example|
     example.epic("allure-ruby-commons")
+    example.parameter("ruby", ENV["RUBY_VERSION"])
+    example.parameter("oj", ENV["WITH_OJ_GEM"])
   end
 end
 
@@ -49,11 +51,11 @@ RSpec.shared_context("lifecycle mocks") do
   end
 
   def start_fixture(name, type)
-    lifecycle.public_send("start_#{type}_fixture", Allure::FixtureResult.new(name: name))
+    lifecycle.public_send(:"start_#{type}_fixture", Allure::FixtureResult.new(name: name))
   end
 
   def add_fixture(name, type)
-    fixture_result = lifecycle.public_send("start_#{type}_fixture", Allure::FixtureResult.new(name: name))
+    fixture_result = lifecycle.public_send(:"start_#{type}_fixture", Allure::FixtureResult.new(name: name))
     lifecycle.update_fixture { |fixture| fixture.status = Allure::Status::PASSED }
     lifecycle.stop_fixture
 

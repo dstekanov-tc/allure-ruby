@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
     "rubygems_mfa_required" => "false"
   }
 
-  s.required_ruby_version = ">= 2.7.0"
+  s.required_ruby_version = ">= 3.0.0"
 
   s.license = "Apache-2.0"
 
@@ -29,5 +29,6 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
 
   s.add_dependency "allure-ruby-commons", version
-  s.add_dependency "cucumber", ">= 4.0.0", "< 9"
+  s.add_dependency "csv", ">= 3.0", "< 4.0"
+  s.add_dependency "cucumber", ">= 4.0.0", "< 10"
 end
